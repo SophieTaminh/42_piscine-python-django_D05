@@ -180,4 +180,10 @@ def display(request):
 
 # 127.0.0.1:8000/ex03/display
 def remove(request):
-	pass
+	# construction du formulaire vide
+	form = my_form(request.POST)
+	# si le formulaire est ok, recuperation des donnees
+	if form.is_valid():
+		text = form.cleaned_data['text']
+		
+	return render(request,'ex04/remove.html',{'form' : form})

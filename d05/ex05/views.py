@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Movies
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
+from .forms import my_form
 
 # 127.0.0.1:8000/ex05/populate
 def populate(request):
@@ -143,7 +144,14 @@ def display(request):
 
 	return HttpResponse(select_return)
 
-
-# 127.0.0.1:8000/ex05/display
 def remove(request):
-	pass
+	# construction du formulaire vide
+	form = my_form(request.POST)
+	# si le formulaire est ok, recuperation des donnees
+	if form.is_valid():
+		text = form.cleaned_data['text']
+		
+	return render(request,'ex05/remove.html',{'form' : form})
+
+
+
