@@ -1,0 +1,25 @@
+
+<!doctype html>
+<html>
+	<head>
+		<title> Nettoyage de la</title>
+		
+	</head>
+
+	<body>
+		
+
+		<h1>  </h1>
+		 <div>
+		<h2>suppression de fims</h2>
+		<form method="POST">
+			{% csrf_token%} <!-- securite -->
+			{{ form }}		<!-- formulaire genere en HTML -->
+			<input type="submit" value="remove"> <!-- bouton pour valider-->
+		</form>
+	</div>
+
+	<hr>
+		</div>
+	</body>
+</html>
