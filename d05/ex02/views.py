@@ -128,7 +128,7 @@ def display(request):
 		curr = conn.cursor()
 
 		# executer des commamdes sql
-		curr.execute(""" SELECT * FROM ex00_movies 
+		curr.execute(""" SELECT * FROM ex02_movies 
 			""")
 		response = curr.fetchall()
 		
