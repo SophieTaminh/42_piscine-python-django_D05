@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Movies
 from django.http import HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
 
 # 127.0.0.1:8000/ex05/populate
 def populate(request):
@@ -19,7 +20,7 @@ def populate(request):
 					release_date = '1999-05-19')
 			Movies_insert.save()
 			insert_return = "ok<br>"
-		insert_return = "l'episode numero {} exite deja<br>".format(svg_title)
+		insert_return = "l'episode {} existe deja<br>".format(svg_title)
 
 		svg_title = 'Attack of the Clones'
 		try:
@@ -34,7 +35,7 @@ def populate(request):
 					release_date = '2002-05-16')
 			Movies_insert.save()
 			insert_return = insert_return + "ok<br>"
-		insert_return = insert_return + "l'episode numero {} exite deja<br>".format(svg_title)
+		insert_return = insert_return + "l'episode {} existe deja<br>".format(svg_title)
 
 		svg_title = 'Revenge of the Sith'
 		try:
@@ -49,6 +50,8 @@ def populate(request):
 					release_date = '2005-05-19')
 			Movies_insert.save()
 			insert_return = insert_return + "ok<br>"
+		insert_return = insert_return + "l'episode {} existe deja<br>".format(svg_title)
+
 
 		svg_title = 'A New Hope'
 		try:
@@ -63,6 +66,8 @@ def populate(request):
 					release_date = '1977-05-25')
 			Movies_insert.save()
 			insert_return = insert_return + "ok<br>"
+		insert_return = insert_return + "l'episode {} existe deja<br>".format(svg_title)
+
 
 		svg_title = 'The Empire Strikes Back'
 		try:
@@ -77,6 +82,8 @@ def populate(request):
 					release_date = '1980-05-17')
 			Movies_insert.save()
 			insert_return = insert_return + "ok<br>"
+		insert_return = insert_return + "l'episode {} existe deja<br>".format(svg_title)
+
 
 		svg_title = 'Return of the Jedi'
 		try:
@@ -91,6 +98,9 @@ def populate(request):
 					release_date = '1983-05-25')
 			Movies_insert.save()
 			insert_return = insert_return + "ok<br>"
+		insert_return = insert_return + "l'episode {} existe deja<br>".format(svg_title)
+
+
 
 		svg_title = 'The Force Awakens'
 		try:
@@ -105,6 +115,7 @@ def populate(request):
 					release_date = '2015-12-11')
 			Movies_insert.save()
 			insert_return = insert_return + "ok<br>"
+		insert_return = insert_return + "l'episode {} existe deja<br>".format(svg_title)
 
 	except Exception as e:
 		return HttpResponse("Erreur grave sur le titre {}<br>Erreur {}".format(svg_title,e))
@@ -118,12 +129,11 @@ def display(request):
 	try:
 		select_response = Movies.objects.all()
 		
-		if response:
+		if select_response:
 			select_return = "<table>"
-			select_return = select_return + '<td>title</td><td> episode </td><td> opening_craw </td> </td><td> directed </td> <td> producer </td><td> released </td>'
-			for row in response:
-				each_row = '<td> {} </td><td> {} </td><td> {} </td> </td><td> {}</td> <td> {}</td> <td>{}</td>'.format(row[0], row[1], row[2], row[3], row[4], row[5])
-				select_return = select_return + "<tr>" + each_row + "</tr>"
+			for row in select_response:
+				each_row = 'title : {} -- episode_nb : {} -- opening_craw {} -- directed by {}-- producer by {}-- released by {}'.format(row.title, row.episode_nb, row.opening_crawl, row.director, row.producer, row.release_date)
+				select_return = select_return + "<tr><td>" + each_row + "</td></tr><br>"
 			select_return = select_return + "</table>"
 		else: 
 			select_return = "No data Available"

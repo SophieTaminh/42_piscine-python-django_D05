@@ -170,7 +170,7 @@ def display(request):
 		select_return = select_return + '<td>title</td><td> episode </td><td> opening_craw </td> </td><td> directed </td> <td> producer </td><td> released </td>'
 		for row in response:
 			each_row = '<td> {} </td><td> {} </td><td> {} </td> </td><td> {}</td> <td> {}</td> <td>{}</td>'.format(row[0], row[1], row[2], row[3], row[4], row[5])
-			select_return = select_return + "<tr>" + each_row + "</tr>"
+			select_return = select_return + "<tr>" + each_row + "</tr><br>"
 		select_return = select_return + "</table>"
 	else: 
 		select_return = "No data Available"

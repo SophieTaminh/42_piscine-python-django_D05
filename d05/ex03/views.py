@@ -98,9 +98,10 @@ def display(request):
 		
 		if select_response:
 			select_return = "<table>"
+			select_return = select_return + '<tr><td>title</td><td> episode </td><td> opening_craw </td> </td><td> directed </td> <td> producer </td><td> released </td></tr>'
 			for row in select_response:
-				each_row = 'title : {} -- episode_nb : {} -- opening_craw {} -- directed by {}-- producer by {}-- released by {}'.format(row.title, row.episode_nb, row.opening_crawl, row.director, row.producer, row.release_date)
-				select_return = select_return + "<tr><td>" + each_row + "</td></tr><br>"
+				each_row = '<td> {:<32} </td><td> {} </td><td> {} </td> </td><td> {}</td> <td> {}</td> <td>{}</td>'.format(row.title, row.episode_nb, row.opening_crawl, row.director, row.producer, row.release_date)
+				select_return = select_return + "<tr>" + each_row + "</tr>"
 			select_return = select_return + "</table>"
 		else: 
 			select_return = "No data Available"
