@@ -26,4 +26,6 @@ urlpatterns = [
     path('ex03/', include('ex03.urls')),
 # pour ex04
     path('ex04/', include('ex04.urls')),
+# pour ex05
+    path('ex05/', include('ex05.urls')),
 ]
