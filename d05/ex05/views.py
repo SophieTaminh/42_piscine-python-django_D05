@@ -118,11 +118,12 @@ def display(request):
 	try:
 		select_response = Movies.objects.all()
 		
-		if select_response:
+		if response:
 			select_return = "<table>"
-			for row in select_response:
-				each_row = 'title : {} -- episode_nb : {} -- opening_craw {} -- directed by {}-- producer by {}-- released by {}'.format(row.title, row.episode_nb, row.opening_crawl, row.director, row.producer, row.release_date)
-				select_return = select_return + "<tr><td>" + each_row + "</td></tr><br>"
+			select_return = select_return + '<td>title</td><td> episode </td><td> opening_craw </td> </td><td> directed </td> <td> producer </td><td> released </td>'
+			for row in response:
+				each_row = '<td> {} </td><td> {} </td><td> {} </td> </td><td> {}</td> <td> {}</td> <td>{}</td>'.format(row[0], row[1], row[2], row[3], row[4], row[5])
+				select_return = select_return + "<tr>" + each_row + "</tr>"
 			select_return = select_return + "</table>"
 		else: 
 			select_return = "No data Available"
