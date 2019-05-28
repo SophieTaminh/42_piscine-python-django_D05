@@ -2,10 +2,9 @@ from django.shortcuts import render
 from .models import Movies
 from django.http import HttpResponse
 
-
-def init(request):
 # 127.0.0.1:8000/ex04/init
-	
+def init(request):
+
 	try:
 		conn = psycopg2.connect(
 			database = 'formationdjango',
@@ -33,7 +32,9 @@ def init(request):
 	return HttpResponse('ok')
 
 # 127.0.0.1:8000/ex04/populate
-try:
+def populate(request):
+	
+	try:
 		conn = psycopg2.connect(
 			database = 'formationdjango',
 			host = 'localhost',
